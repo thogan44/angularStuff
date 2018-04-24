@@ -6,6 +6,7 @@ import { StatFiltersComponent } from './stat-filters/stat-filters.component';
 import { VideoDashboardComponent } from './video-dashboard/video-dashboard.component';
 import { VideoListComponent } from './video-list/video-list.component';
 import { VideoPlayerComponent } from './video-player/video-player.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
   { path: '', component: VideoDashboardComponent, pathMatch: 'full' }
@@ -17,6 +18,6 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [VideoDashboardComponent, VideoListComponent, VideoPlayerComponent, StatFiltersComponent]
+  declarations: [VideoDashboardComponent, VideoListComponent, VideoPlayerComponent, StatFiltersComponent, UserDashboardComponent]
 })
 export class DashboardModule { }
