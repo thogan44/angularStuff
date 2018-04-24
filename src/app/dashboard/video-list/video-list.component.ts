@@ -1,6 +1,8 @@
 import {Component, EventEmitter, OnInit, Output  } from '@angular/core';
 import { Video } from '../type';
 import { HttpClient } from '@angular/common/http';
+import { VideoDataService } from '../../video-data.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-video-list',
@@ -9,12 +11,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class VideoListComponent implements OnInit {
   //to sustanciate the objects for the front end to talk to  
-  videos: Video[];
+  videos: Observable<Video[]>;
   currentVideo: Video;
   @Output('selectVideo') setSelectVideo = new EventEmitter<Video>();
 
-  constructor(http: HttpClient) {
-    http.get<Video[]>('https://api.angularbootcamp.com/videos')
+  constructor(videoSvc: VideoDataService) {
+    videoSvc.getVideos()
     .subscribe(list => this.videos = list);
    }
 

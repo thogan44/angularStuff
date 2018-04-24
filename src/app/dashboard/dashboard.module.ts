@@ -8,6 +8,7 @@ import { VideoDashboardComponent } from './video-dashboard/video-dashboard.compo
 import { VideoListComponent } from './video-list/video-list.component';
 import { VideoPlayerComponent } from './video-player/video-player.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { VideoDataService } from '../video-data.service';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes)
   ],
+  providers:[VideoDataService],
   declarations: [VideoDashboardComponent, 
     VideoListComponent, 
     VideoPlayerComponent, 

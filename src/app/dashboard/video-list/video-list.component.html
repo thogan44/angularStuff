@@ -1,4 +1,4 @@
-<app-video-display *ngFor="let video of videos"
+<app-video-display *ngFor="let video of (videos)"
   (click)="selectVideo(video)"
   [video]="video"
   [selected]="video === currentVideo">
