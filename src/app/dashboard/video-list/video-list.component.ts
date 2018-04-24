@@ -6,10 +6,16 @@ import { Video } from '../type';
   styleUrls: ['./video-list.component.css']
 })
 export class VideoListComponent implements OnInit {
+  //to sustanciate the objects for the front end to talk to  
   videos = videoList;
+  currentVideo: Video;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  selectVideo(video: Video) {
+    this.currentVideo = video;
   }
 
 }
