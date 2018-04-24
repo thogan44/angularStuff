@@ -5,6 +5,6 @@ app-video-dashboard {
      grid-gap: 1.5rem;
     }
 
-    .selected:hover{
+    .selected{
         background-color:rebeccapurple;
     }

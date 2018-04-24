@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output  } from '@angular/core';
 import { Video } from '../type';
+
 @Component({
   selector: 'app-video-list',
   templateUrl: './video-list.component.html',
@@ -9,6 +10,8 @@ export class VideoListComponent implements OnInit {
   //to sustanciate the objects for the front end to talk to  
   videos = videoList;
   currentVideo: Video;
+  @Output('selectVideo') setSelectVideo = new EventEmitter<Video>();
+
   constructor() { }
 
   ngOnInit() {
@@ -16,6 +19,7 @@ export class VideoListComponent implements OnInit {
 
   selectVideo(video: Video) {
     this.currentVideo = video;
+    this.setSelectVideo.emit(video);
   }
 
 }

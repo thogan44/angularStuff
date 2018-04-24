@@ -1,6 +1,5 @@
-<div *ngFor="let video of videos"
-(mouseover)="selectVideo(video)"
-[class.selected]="video === currentVideo">
-  <strong >{{video.title}}</strong>
-  <div>by: {{video.author}}</div>
-</div>
+<app-video-display *ngFor="let video of videos"
+  (click)="selectVideo(video)"
+  [video]="video"
+  [selected]="video === currentVideo">
+</app-video-display>
