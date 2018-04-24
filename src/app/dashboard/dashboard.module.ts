@@ -9,6 +9,7 @@ import { VideoListComponent } from './video-list/video-list.component';
 import { VideoPlayerComponent } from './video-player/video-player.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { VideoDataService } from '../video-data.service';
+import{ReactiveFormsModule} from '@angular/forms';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    ReactiveFormsModule
   ],
   providers:[VideoDataService],
   declarations: [VideoDashboardComponent, 
