@@ -1,30 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Video } from '../type';
 @Component({
   selector: 'app-video-list',
   templateUrl: './video-list.component.html',
   styleUrls: ['./video-list.component.css']
 })
 export class VideoListComponent implements OnInit {
-
+  videos = videoList;
   constructor() { }
 
   ngOnInit() {
   }
 
 }
-export interface Video {
-  title:string;
-  author:string;
-  id:string;
-  videoDetails:VideoDetails[];
-}
 
-export interface VideoDetails{
-  age:number;
-  region:string;
-  date:string;
-}
 const videoList = [
   {
     "title": "Angular Observable Data Flow",
