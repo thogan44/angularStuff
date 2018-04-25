@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output  } from '@angular/core';
 import { Video } from '../type';
-import { HttpClient } from '@angular/common/http';
+
 import { VideoDataService } from '../../video-data.service';
 import { Observable } from 'rxjs/Observable';
 
@@ -16,8 +16,7 @@ export class VideoListComponent implements OnInit {
   @Output('selectVideo') setSelectVideo = new EventEmitter<Video>();
 
   constructor(videoSvc: VideoDataService) {
-    videoSvc.getVideos()
-    .subscribe(list => this.videos = list);
+    this.videos = videoSvc.getVideos();
    }
 
   ngOnInit() {
