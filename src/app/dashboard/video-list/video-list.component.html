@@ -1,5 +1,4 @@
-<app-video-display *ngFor="let video of (videos | async)"
-  (click)="selectVideo(video)"
-  [video]="video"
-  [selected]="video === currentVideo">
-</app-video-display>
+<div *ngFor="let video of (videos | async)" routerLinkActive="selected">
+    <app-video-display [routerLink]="video.id" [video]="video">
+    </app-video-display>
+  </div>

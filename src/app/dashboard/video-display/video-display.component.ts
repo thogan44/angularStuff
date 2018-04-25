@@ -8,7 +8,6 @@ import { Video } from '../type';
 })
 export class VideoDisplayComponent implements OnInit {
     @Input() video: Video;
-    @Input() selected: boolean;
   constructor() { }
 
   ngOnInit() {

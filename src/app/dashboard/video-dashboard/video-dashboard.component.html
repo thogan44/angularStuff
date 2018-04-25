@@ -1,4 +1,6 @@
-<app-video-list (selectVideo)="setVideo($event)"></app-video-list>
-<app-video-player [video]="currentVideo"></app-video-player>
-<app-stat-filters [video]="currentVideo"></app-stat-filters>
+<app-video-list></app-video-list>
+<div>
+<router-outlet></router-outlet>
+</div>
+<app-stat-filters></app-stat-filters>
 

@@ -13,7 +13,13 @@ import{ReactiveFormsModule} from '@angular/forms';
 
 
 const routes: Routes = [
-  { path: '', component: VideoDashboardComponent, pathMatch: 'full' }
+    {
+        path: '',
+        component: VideoDashboardComponent,
+        children: [
+          {path: ':videoId', component: VideoPlayerComponent }
+        ]
+      }
 ];
 
 

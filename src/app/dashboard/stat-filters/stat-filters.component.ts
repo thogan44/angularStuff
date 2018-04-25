@@ -1,6 +1,7 @@
-import { Component, OnChanges, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import {Video} from '../type';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { startWith, map } from 'rxjs/operators';
 
@@ -10,22 +11,23 @@ import { startWith, map } from 'rxjs/operators';
   templateUrl: './stat-filters.component.html',
   styleUrls: ['./stat-filters.component.css']
 })
-export class StatFiltersComponent implements OnChanges {
+export class StatFiltersComponent {
   searchControl: FormControl;
-  @Input() video: Video;
+  id: Observable<string>;
   matches: Observable<boolean>;
   
-  constructor() {
+  constructor(route: ActivatedRoute) {
+    this.id = route.params.pipe(map(params => params.videoId));
     this.searchControl = new FormControl('', Validators.minLength(3));
    }
 
-   ngOnChanges(changes: SimpleChanges): void {
-    this.matches = this.searchControl.valueChanges.pipe(
-      startWith(this.searchControl.value),
-      map(searchValue => {
-        return !!this.video && this.video.title.includes(searchValue);
-      })
-    );
-  }
+   //ngOnChanges(changes: SimpleChanges): void {
+    //this.matches = this.searchControl.valueChanges.pipe(
+      //startWith(this.searchControl.value),
+      //map(searchValue => {
+        //return !!this.video && this.video.title.includes(searchValue);
+      //})
+    //);
+  //}
 
 }
