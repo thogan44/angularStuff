@@ -1,9 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChange } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import {Video} from '../type';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-import { startWith, map } from 'rxjs/operators';
+import { combineLatest, map, pluck, startWith, switchMap, tap } from 'rxjs/operators';
+import { Video } from '../type';
+import { VideoDataService } from '../../video-data.service';
+
 
 
 @Component({
@@ -13,21 +15,25 @@ import { startWith, map } from 'rxjs/operators';
 })
 export class StatFiltersComponent {
   searchControl: FormControl;
-  id: Observable<string>;
+  video: Observable<Video>;
   matches: Observable<boolean>;
   
-  constructor(route: ActivatedRoute) {
-    this.id = route.params.pipe(map(params => params.videoId));
+  constructor(route: ActivatedRoute, videoSvc: VideoDataService) {
     this.searchControl = new FormControl('', Validators.minLength(3));
-   }
-
-   //ngOnChanges(changes: SimpleChanges): void {
-    //this.matches = this.searchControl.valueChanges.pipe(
-      //startWith(this.searchControl.value),
-      //map(searchValue => {
-        //return !!this.video && this.video.title.includes(searchValue);
-      //})
-    //);
-  //}
-
+  
+   // note: firstChild is null when redirecting. Needs more thought
+   this.video = route.params.pipe(
+       pluck<{}, string>('videoId'),
+      tap(id => console.log({ id })),
+       switchMap(id => videoSvc.getVideo(id))
+     );
+     this.matches = this.searchControl.valueChanges.pipe(
+       startWith(this.searchControl.value),
+       combineLatest(this.video),
+       map(([searchValue, video]) => {
+         return !!searchValue && !!video && video.title.includes(searchValue);
+       })
+     );
+  }
+ }
 }

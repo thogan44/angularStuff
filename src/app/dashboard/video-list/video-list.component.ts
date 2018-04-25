@@ -1,6 +1,8 @@
-import {Component, EventEmitter, OnInit, Output  } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Video } from '../type';
+import { Store } from '@ngrx/store';
 
+import { DashboardState } from '../state';
 import { VideoDataService } from '../../video-data.service';
 import { Observable } from 'rxjs/Observable';
 
@@ -15,8 +17,9 @@ export class VideoListComponent implements OnInit {
   currentVideo: Video;
   @Output('selectVideo') setSelectVideo = new EventEmitter<Video>();
 
-  constructor(videoSvc: VideoDataService) {
-    this.videos = videoSvc.getVideos();
+  constructor(videoSvc: VideoDataService, private store: Store<{ dashboard: DashboardState }>) {
+     videoSvc.obtainVideos();
+    this.videos = store.select(s => s.dashboard.videoList);
    }
 
   ngOnInit() {
